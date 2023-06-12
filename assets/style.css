@@ -1,0 +1,17 @@
+.weather-dashboard {
+    color: white;
+}
+
+.weather-gradient-bgc {
+    background: linear-gradient(to right, #F2D2BD, #A95C68)
+}
+
+.search-bgc {
+    background: #A95C68;
+    border: 1px solid #A95C68;
+}
+
+.search-bgc:hover {
+    background: #9A515D;
+    border: 1px solid #9A515D;
+}
