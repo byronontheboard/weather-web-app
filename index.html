@@ -18,35 +18,35 @@
     <div class="container-large">
 
         <!-- Weather container -->
-        <div class="weather-gradient-bgc">
-            <p class="">
+        <div id="header" class="weather-gradient-bgc m-2">
+            <p class="h2 p-3 fw-bold">
                 Weather Dashboard
             </p>
         </div>
         
-        <div class="row">
+        <div class="row m-2" style="border: orange solid;">
 <!-- Search Box -->
             <!-- The 'col-3' will take up 3/12 of the pages width. -->
-            <div class="col-3">
-                <div class="d-flex flex-column align-items-center">
+            <div id="search-box" class="col-12" style="border: black solid;">
+                <div class="d-flex flex-column align-items-center" style="border: blue solid;">
                     <!-- This is the header for the search bar.  -->
-                    <p class="d-flex">
+                    <p class="h4 d-flex text-center fw-bold mt-2">
                         Search for a City:
                     </p>
                     <!-- This will float 'Location' above the location that the user types into the search bar. -->
-                    <div class="form-floating">
-                        <input id="floatingInput" type="text" placeholder="Location" class="form-control">
+                    <div class="form-floating mb-2 w-100">
+                        <input id="floatingInput" type="text" placeholder="Location" class="form-control" style="border: red solid;">
                         <label for="floatingInput" class="text-muted">Location</label>
                     </div>
                     <!-- This is the 'Search' button. -->
-                    <button id="search-btn" class="btn btn-primary search-bgc flex-grow-1 w-100" type="button">
+                    <button id="search-btn" class="btn btn-primary search-bgc w-100 fw-bold mb-2" type="button" style="border: red solid;">
                         Search
                     </button>
                 </div>
 
-                 <div class="accordion" id="accordionExample">
+                 <div class="accordion" id="accordionExample" style="border: orange solid;">
                     <!-- This 'History' button will open an accordion on click, showcasing the users search history (for past locations). -->
-                    <button class="btn btn-secondary w-100" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" data-bs-parent="#accordionExample">
+                    <button class="btn btn-secondary w-100 fw-bold mb-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" data-bs-parent="#accordionExample" style="border: red solid;">
                         History
                     </button>
                     <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
@@ -63,11 +63,11 @@
             
 <!-- Weather Box -->
             <!-- The 'col-9' will take up 9/12 of the pages width. -->
-            <div class="col-9">
+            <div id="weather-box" class="col-9" style="border: black solid; display: none;">
                 <!-- This holds the current date's location and weather forecast. -->
-                <div id="weather-location" class="">
+                <div id="weather-location" class="fw-bold" style="border: blue solid;">
+                    <p id="current-city" class="h3"></p>
                     <p id="current-date"></p>
-                    <p id="current-city"></p>
                     <p id="current-weather"></p>
                     <p id="current-temperature"></p>
                     <p id="current-wind"></p>
@@ -75,11 +75,11 @@
                 </div>
                
                 <!-- Contains the '5-Day Forecast' columns and its title text above it. -->
-                <div class="col-12 mb-3 flex-grow-2">
+                <div class="col-12 mt-2 flex-grow-2" style="border: blue solid;">
                     <div>
-                        <p class="">5-Day Forecast:</p>
+                        <p class="h3">5-Day Forecast:</p>
                     </div>
-                    <div class="forecast-container d-flex justify-content-around">
+                    <div class="forecast-container d-flex justify-content-around text-center">
                         <div class="forecast-card">
                           <p class="forecast-day"></p>
                           <p class="forecast-weather"></p>

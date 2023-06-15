@@ -8,6 +8,9 @@ const currentWindElement = document.querySelector('#current-wind');
 const currentHumidityElement = document.querySelector('#current-humidity');
 const currentDateElement = document.querySelector('#current-date'); 
 
+const searchBox = document.querySelector('#search-box');
+const weatherBox = document.querySelector('#weather-box');
+
 const forecastContainer = document.querySelector('.forecast-container');
 const forecastCards = document.querySelectorAll('.forecast-card');
 
@@ -18,6 +21,11 @@ searchButton.addEventListener('click', () => {
       var apiKey = 'e9ade097c11130cb50bd86df245d32ea';
       const currentWeatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${searchTerm}&appid=${apiKey}`;
       const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${searchTerm}&appid=${apiKey}`;
+
+      // After updating the weather information, this will modify the class of the search box and show the weather box.
+      searchBox.classList.remove('col-12');
+      searchBox.classList.add('col-3');
+      weatherBox.style.display = 'block';
 
     // Make a request to the OpenWeatherMap API using the search term.
     fetch(currentWeatherUrl)
@@ -49,8 +57,8 @@ searchButton.addEventListener('click', () => {
       const humidity = data.main.humidity;
 
       // Update the corresponding elements with the weather information
-      currentCityElement.textContent = `Current City: ${searchTerm}`;
-      currentWeatherElement.textContent = `Weather: ${capitalizedWeather}`;
+      currentCityElement.textContent = `${searchTerm}`;
+      currentWeatherElement.textContent = `${capitalizedWeather}`;
       currentTemperatureElement.textContent = `Temperature: ${temperatureFahrenheit.toFixed(1)}°F`;
       currentWindElement.textContent = `Wind Speed: ${windMileHour.toFixed(1)} MPH`;
       currentHumidityElement.textContent = `Humidity: ${humidity}%`;
