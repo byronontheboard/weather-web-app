@@ -25,21 +25,26 @@ if (searchHistory) {
   cityHistory.innerHTML = searchHistory;
 }
 
-// Function to save a searched city to local storage
 function saveSearchHistory(city) {
-  // Check if the city is already saved
-  if (!savedCities.includes(city.toLowerCase())) {
-    savedCities.push(city.toLowerCase());
-    
-  let searchHistory = localStorage.getItem('searchHistory');
-  if (!searchHistory) {
-    searchHistory = '';
-  }
-  searchHistory += `<p>${city}</p>`;
-  localStorage.setItem('searchHistory', searchHistory);
-  } 
-}
+  const lowercaseCity = city.toLowerCase();
+  if (!savedCities.includes(lowercaseCity)) {
+    savedCities.push(lowercaseCity);
 
+    let searchHistory = localStorage.getItem('searchHistory');
+    if (!searchHistory) {
+      searchHistory = '';
+    }
+
+    // This will check if the city already exists in the search history(making sure there are no duplicates in localStorage).
+    const cityExists = searchHistory.includes(`<p>${city}</p>`);
+    if (!cityExists) {
+      searchHistory += `<p>${city}</p>`;
+      localStorage.setItem('searchHistory', searchHistory);
+
+      cityHistory.innerHTML = searchHistory; // Update the HTML content
+    }
+  }
+}
 
 // Add event listener to the search button
 searchButton.addEventListener('click', () => {
@@ -63,15 +68,15 @@ searchButton.addEventListener('click', () => {
     // Originally, when a city was searched, the description for the 'Weather' was all lowercase, 
     // but I wanted it to capitalize the first letter of each word so I made this variable to handle this.
     const capitalizedWeather = weather
-        // This will split each word in the description for the 'Weather'.
-        .split(' ')
-        // Now that the words are split, I am targeting the first letter of each word('charAt(0)' being the index for the letter) and making it uppercase.
-        // The slice is used to return the rest of the word starting at the second letter('slice(1)' being the index for the second letter and so forth).
-        // This allows only the first letter to be capitalized and not every letter of the word with the help of slice.
-        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-        // Lastly, I join these words back together so that they can be displayed('currentWeatherElement.textContent = `Weather: ${capitalizedWeather}`;').
-        // The reason there is only a space('join(' ')') is because a comma is the default for the separator when using 'join' and I do not desire that output.
-        .join(' ');
+      // This will split each word in the description for the 'Weather'.
+      .split(' ')
+      // Now that the words are split, I am targeting the first letter of each word('charAt(0)' being the index for the letter) and making it uppercase.
+      // The slice is used to return the rest of the word starting at the second letter('slice(1)' being the index for the second letter and so forth).
+      // This allows only the first letter to be capitalized and not every letter of the word with the help of slice.
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      // Lastly, I join these words back together so that they can be displayed('currentWeatherElement.textContent = `Weather: ${capitalizedWeather}`;').
+      // The reason there is only a space('join(' ')') is because a comma is the default for the separator when using 'join' and I do not desire that output.
+      .join(' ');
     // This is the variable for the temperature of the city that is searched.  
     const temperatureKelvin = data.main.temp;
     // This is using a formula to convert the initial temperature(Kelvin) to Fahrenheit.
@@ -95,11 +100,11 @@ searchButton.addEventListener('click', () => {
     const formattedDate = new Date().toLocaleDateString('en-US', options);
     currentDateElement.textContent = formattedDate;
   })
-    .catch(error => {
-        console.log('Error:', error);
-    });
+  .catch(error => {
+      console.log('Error:', error);
+  });
 
-      // Make a request to get the 5-day forecast
+  // Make a request to get the 5-day forecast
   fetch(forecastUrl)
     .then(response => response.json())
     .then(data => {
@@ -180,16 +185,6 @@ $(searchInput).autocomplete({
   minLength: 2,
   select: function (event, ui) {
     searchInput.value = ui.item.value;
-    searchButton.click();
-  }
-});
-
-// Add event listener to the history of cities to be able to access/click them.
-historyElement.addEventListener('click', event => {
-  const clickedCity = event.target;
-  if (clickedCity.classList.contains('history-city')) {
-    const searchTerm = clickedCity.textContent;
-    searchInput.value = searchTerm;
     searchButton.click();
   }
 });
