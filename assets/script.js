@@ -38,13 +38,22 @@ function saveSearchHistory(city) {
     // This will check if the city already exists in the search history(making sure there are no duplicates in localStorage).
     const cityExists = searchHistory.includes(`<p>${city}</p>`);
     if (!cityExists) {
-      searchHistory += `<p>${city}</p>`;
+      searchHistory += `<p class="history-city">${city}</p>`;
       localStorage.setItem('searchHistory', searchHistory);
 
       cityHistory.innerHTML = searchHistory; // Update the HTML content
     }
   }
 }
+
+// Add event listener to the city history element
+cityHistory.addEventListener('click', (event) => {
+  if (event.target.classList.contains('history-city')) {
+    const searchTerm = event.target.textContent;
+    searchInput.value = searchTerm;
+    searchButton.click();
+  }
+});
 
 // Add event listener to the search button
 searchButton.addEventListener('click', () => {
@@ -116,7 +125,6 @@ searchButton.addEventListener('click', () => {
         currentDate.setDate(currentDate.getDate() + index + 1);
         const options = { weekday: 'long', month: 'long', day: 'numeric' };
         const formattedDate = currentDate.toLocaleDateString('en-US', options);
-        const day = currentDate.toLocaleDateString('en-US', { weekday: 'long' });
         const weather = forecast.weather[0].description;
         const capitalizedWeather = weather
           .split(' ')
@@ -147,7 +155,7 @@ searchButton.addEventListener('click', () => {
     if (!savedCities.includes(searchTerm.toLowerCase())) {
       savedCities.push(searchTerm.toLowerCase());
 
-      // Append the search term to the history element
+      // Append the search term to the history element.
       const cityElement = document.createElement('p');
       cityElement.textContent = searchTerm;
       cityElement.classList.add('history-city');
