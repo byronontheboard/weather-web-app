@@ -1,4 +1,4 @@
-// Get references to the necessary elements
+// Get references to the necessary elements.
 const searchButton = document.querySelector('#search-btn');
 const searchInput = document.querySelector('#floatingInput');
 const currentCityElement = document.querySelector('#current-city');
@@ -6,6 +6,7 @@ const currentWeatherElement = document.querySelector('#current-weather');
 const currentTemperatureElement = document.querySelector('#current-temperature');
 const currentWindElement = document.querySelector('#current-wind');
 const currentHumidityElement = document.querySelector('#current-humidity');
+const currentDayElement = document.querySelector('#current-day'); 
 const currentDateElement = document.querySelector('#current-date'); 
 
 const searchBox = document.querySelector('#search-box');
@@ -14,11 +15,11 @@ const weatherBox = document.querySelector('#weather-box');
 const forecastContainer = document.querySelector('.forecast-container');
 const forecastCards = document.querySelectorAll('.forecast-card');
 
-// Array to keep track of saved cities
+// Array to keep track of saved cities.
 const savedCities = [];
 const cityHistory = document.querySelector('#history');
 
-// Load search history from local storage
+// Load search history from Local Storage.
 let searchHistory = localStorage.getItem('searchHistory');
 if (searchHistory) {
   const cityHistory = document.querySelector('#history');
@@ -35,18 +36,18 @@ function saveSearchHistory(city) {
       searchHistory = '';
     }
 
-    // This will check if the city already exists in the search history(making sure there are no duplicates in localStorage).
-    const cityExists = searchHistory.includes(`<p>${city}</p>`);
+    // This will check if the city already exists in the search history(making sure there are no duplicates in Local Storage).
+    const cityExists = searchHistory.includes(`<p class="history-city btn btn-dark w-100 fw-bold mb-2">${city}</p>`);
     if (!cityExists) {
-      searchHistory += `<p class="history-city">${city}</p>`;
+      searchHistory += `<p class="history-city btn btn-dark w-100 fw-bold mb-2">${city}</p>`;
       localStorage.setItem('searchHistory', searchHistory);
 
-      cityHistory.innerHTML = searchHistory; // Update the HTML content
+      cityHistory.innerHTML = searchHistory;
     }
   }
 }
 
-// Add event listener to the city history element
+// Add event listener to the city history element.
 cityHistory.addEventListener('click', (event) => {
   if (event.target.classList.contains('history-city')) {
     const searchTerm = event.target.textContent;
@@ -55,7 +56,7 @@ cityHistory.addEventListener('click', (event) => {
   }
 });
 
-// Add event listener to the search button
+// Add event listener to the search button.
 searchButton.addEventListener('click', () => {
   const searchTerm = searchInput.value.trim();
   if (searchTerm !== '') {
@@ -72,7 +73,7 @@ searchButton.addEventListener('click', () => {
   fetch(currentWeatherUrl)
     .then(response => response.json())
     .then(data => {
-    // Get the weather, wind, and humidity from the response data
+    // Get the weather, wind, and humidity from the response data.
     const weather = data.weather[0].description;
     // Originally, when a city was searched, the description for the 'Weather' was all lowercase, 
     // but I wanted it to capitalize the first letter of each word so I made this variable to handle this.
@@ -97,23 +98,26 @@ searchButton.addEventListener('click', () => {
     // This is the variable for the humidity of the city that is searched.
     const humidity = data.main.humidity;
 
-    // Update the corresponding elements with the weather information
+    // Update the corresponding elements with the weather information.
     currentCityElement.textContent = `${searchTerm}`;
     currentWeatherElement.textContent = `${capitalizedWeather}`;
     currentTemperatureElement.textContent = `Temperature: ${temperatureFahrenheit.toFixed(1)}°F`;
     currentWindElement.textContent = `Wind Speed: ${windMileHour.toFixed(1)} MPH`;
     currentHumidityElement.textContent = `Humidity: ${humidity}%`;
 
-    // Update the current date element
-    const options = { weekday: 'long', month: 'long', day: 'numeric' };
-    const formattedDate = new Date().toLocaleDateString('en-US', options);
+    // Update the current date element.
+    const optionsDay = {weekday: 'long'};
+    const optionsDate = {month: 'long', day: 'numeric'};
+    const formattedDay = new Date().toLocaleDateString('en-US', optionsDay);
+    const formattedDate = new Date().toLocaleDateString('en-US', optionsDate);
+    currentDayElement.textContent = formattedDay;
     currentDateElement.textContent = formattedDate;
   })
   .catch(error => {
       console.log('Error:', error);
   });
 
-  // Make a request to get the 5-day forecast
+  // Make a request to get the 5-day forecast.
   fetch(forecastUrl)
     .then(response => response.json())
     .then(data => {
@@ -123,8 +127,10 @@ searchButton.addEventListener('click', () => {
       fiveDayForecast.forEach((forecast, index) => {
         const currentDate = new Date();
         currentDate.setDate(currentDate.getDate() + index + 1);
-        const options = { weekday: 'long', month: 'long', day: 'numeric' };
-        const formattedDate = currentDate.toLocaleDateString('en-US', options);
+        const optionsDay = {weekday: 'long'};
+        const optionsDate = {month: 'long', day: 'numeric'};
+        const formattedDay = currentDate.toLocaleDateString('en-US', optionsDay);
+        const formattedDate = currentDate.toLocaleDateString('en-US', optionsDate);
         const weather = forecast.weather[0].description;
         const capitalizedWeather = weather
           .split(' ')
@@ -133,7 +139,8 @@ searchButton.addEventListener('click', () => {
         const temperatureKelvin = forecast.main.temp;
         const temperatureFahrenheit = (temperatureKelvin - 273.15) * 9 / 5 + 32;
 
-        forecastCards[index].querySelector('.forecast-day').textContent = `${formattedDate}`;
+        forecastCards[index].querySelector('.forecast-day').textContent = `${formattedDay}`;
+        forecastCards[index].querySelector('.forecast-date').textContent = `${formattedDate}`;
         forecastCards[index].querySelector('.forecast-weather').textContent = capitalizedWeather;
         forecastCards[index].querySelector('.forecast-temperature').textContent = `${temperatureFahrenheit.toFixed(1)}°F`;
       });
@@ -148,10 +155,10 @@ searchButton.addEventListener('click', () => {
       console.log('Error:', error);
     });
     
-    // Save searched city to local storage.
+    // Save searched city to Local Storage.
     saveSearchHistory(searchTerm);
 
-    // Check if the city is already saved
+    // Check if the city is already saved.
     if (!savedCities.includes(searchTerm.toLowerCase())) {
       savedCities.push(searchTerm.toLowerCase());
 
@@ -167,7 +174,7 @@ searchButton.addEventListener('click', () => {
   }
 });
 
-// Add event listener to the search input for autocomplete
+// Add event listener to the search input for autocomplete.
 $(searchInput).autocomplete({
   source: function (request, response) {
     const searchTerm = request.term.trim();
@@ -175,7 +182,7 @@ $(searchInput).autocomplete({
       var apiKey = 'e9ade097c11130cb50bd86df245d32ea';
       var apiUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${searchTerm},us&limit=10&appid=${apiKey}`;
 
-      // Make a request to the OpenWeatherMap API using the search term
+      // Make a request to the OpenWeatherMap API using the search term.
       fetch(apiUrl)
         .then(response => response.json())
         .then(data => {

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather Watch</title>
+    <title>Weather Watcher</title>
     
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
@@ -24,34 +24,35 @@
             </p>
         </div>
         
-        <div class="row m-2" style="border: orange solid;">
+        <div class="row m-2">
 <!-- Search Box -->
-            <!-- The 'col-3' will take up 3/12 of the pages width. -->
-            <div id="search-box" class="col-12" style="border: black solid;">
-                <div class="d-flex flex-column align-items-center" style="border: blue solid;">
+            <!-- The 'col-3' will take up 3/12 of the pages width. It is only using col-12 until a search is made, then the class will be replaced with col-3. -->
+            <div id="search-box" class="col-12">
+                <div class="d-flex flex-column align-items-center">
                     <!-- This is the header for the search bar.  -->
-                    <p class="h4 d-flex text-center fw-bold mt-2">
+                    <p class="h4 fw-bold d-flex text-center mt-2">
                         Search for a City:
                     </p>
                     <!-- This will float 'Location' above the location that the user types into the search bar. -->
                     <div class="form-floating mb-2 w-100">
-                        <input id="floatingInput" type="text" placeholder="Location" class="form-control" style="border: red solid;">
+                        <input id="floatingInput" type="text" placeholder="Location" class="form-control">
                         <label for="floatingInput" class="text-muted">Location</label>
                     </div>
                     <!-- This is the 'Search' button. -->
-                    <button id="search-btn" class="btn btn-primary search-bgc w-100 fw-bold mb-2" type="button" style="border: red solid;">
+                    <button id="search-btn" class="btn btn-primary search-bgc w-100 fw-bold mb-2" type="button">
                         Search
                     </button>
                 </div>
 
-                 <div class="accordion" id="accordionExample" style="border: orange solid;">
+                 <div class="accordion" id="accordionExample">
                     <!-- This 'History' button will open an accordion on click, showcasing the users search history (for past locations). -->
-                    <button class="btn btn-secondary w-100 fw-bold mb-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" data-bs-parent="#accordionExample" style="border: red solid;">
+                    <button class="btn btn-secondary w-100 fw-bold mb-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" data-bs-parent="#accordionExample">
                         History
                     </button>
                     <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                         <div id="history" class="accordion-body text-center">
-                            <!-- <p>Appended cities from history will go here. </p> -->
+                            <!-- Appended cities from history will go here. -->
+                            <!-- <p class="history-city btn btn-dark w-100 fw-bold mb-2">${city}</p> -->
                         </div>
                     </div>
                 </div>
@@ -59,45 +60,53 @@
             
 <!-- Weather Box -->
             <!-- The 'col-9' will take up 9/12 of the pages width. -->
-            <div id="weather-box" class="col-9" style="border: black solid; display: none;">
+            <div id="weather-box" class="col-9" style="border-left: solid #A95C68; display: none;">
                 <!-- This holds the current date's location and weather forecast. -->
-                <div id="weather-location" class="fw-bold" style="border: blue solid;">
-                    <p id="current-city" class="h3"></p>
-                    <p id="current-date"></p>
-                    <p id="current-weather"></p>
-                    <p id="current-temperature"></p>
-                    <p id="current-wind"></p>
-                    <p id="current-humidity"></p>
+                <div id="weather-location" class="col-12">
+                    <div class="city-box p-3 m-3">
+                        <p id="current-city" class="h3 fw-bold"></p>
+                        <p id="current-day"></p>
+                        <p id="current-date"></p>
+                        <p id="current-weather"></p>
+                        <p id="current-temperature"></p>
+                        <p id="current-wind"></p>
+                        <p id="current-humidity"></p>
+                    </div>
                 </div>
                
                 <!-- Contains the '5-Day Forecast' columns and its title text above it. -->
-                <div class="col-12 mt-2 flex-grow-2" style="border: blue solid;">
+                <div class="col-12 mt-2 flex-grow-2">
                     <div>
-                        <p class="h3">5-Day Forecast:</p>
+                        <p class="h3 fw-bold">5-Day Forecast:</p>
                     </div>
-                    <div class="forecast-container d-flex justify-content-around text-center">
-                        <div class="forecast-card">
+                    <div class="forecast-container d-flex justify-content-evenly text-center">
+                        <div class="forecast-card p-2 col-2">
                           <p class="forecast-day"></p>
+                          <p class="forecast-date"></p>
                           <p class="forecast-weather"></p>
                           <p class="forecast-temperature"></p>
                         </div>
-                        <div class="forecast-card">
+                        <div class="forecast-card p-2 col-2">
                           <p class="forecast-day"></p>
+                          <p class="forecast-date"></p>
                           <p class="forecast-weather"></p>
                           <p class="forecast-temperature"></p>
                         </div>
-                        <div class="forecast-card">
+                        <div class="forecast-card p-2 col-2">
                           <p class="forecast-day"></p>
+                          <p class="forecast-date"></p>
                           <p class="forecast-weather"></p>
                           <p class="forecast-temperature"></p>
                         </div>
-                        <div class="forecast-card">
+                        <div class="forecast-card p-2 col-2">
                           <p class="forecast-day"></p>
+                          <p class="forecast-date"></p>
                           <p class="forecast-weather"></p>
                           <p class="forecast-temperature"></p>
                         </div>
-                        <div class="forecast-card">
+                        <div class="forecast-card p-2 col-2">
                           <p class="forecast-day"></p>
+                          <p class="forecast-date"></p>
                           <p class="forecast-weather"></p>
                           <p class="forecast-temperature"></p>
                         </div>
@@ -106,7 +115,7 @@
             </div>
         </div>
     </div>
-
+<!-- Script -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="assets/script.js"></script>

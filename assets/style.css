@@ -19,3 +19,28 @@
     background: #9A515D;
     border: 1px solid #9A515D;
 }
+
+.city-box {
+    border: #A95C68 solid;
+    border-radius: 6px;
+}
+
+.forecast-card {
+    color: white;
+    border: #A95C68;
+    border-radius: 6px;
+    background: #A95C68;
+}
+
+.forecast-card:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+    transition: all .2s ease-in-out;
+}
+
+.history-city:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+    transition: all .2s ease-in-out;
+}
+  
