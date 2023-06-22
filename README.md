@@ -1,7 +1,7 @@
 # Weather Watcher | (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧
 By creating this web application, I intended to make the weather of any city in the U.S., accessible to the user. With the help of a weather API, I was able to accomplish just that, as well as allowing the user to access their previous searches, that were saved to Local Storage.  
 
-<img width="1792" alt="Screen Shot 2023-06-21 at 7 57 21 PM" src="https://github.com/byronontheboard/weather-web-app/assets/127366720/8207a04b-329d-4028-8cd1-5d5770650658">
+<img width="1792" alt="Screen Shot 2023-06-21 at 7 57 21 PM" src="https://github.com/byronontheboard/weather-web-app/assets/127366720/5b24fdf7-3ad1-4a6f-9892-37fce218e7bc">
 
 ----
 
@@ -27,7 +27,7 @@ As a traveler, I want to see the weather outlook for multiple cities, so that I 
 ## Search for a City
 Upon entering the webpage, the user will be met with a search bar. Here the user can enter the name of a city in the U.S. to be informed about the city's current forecast, as well as its 5-day forecast. In order to help the user find the city that they are looking for, I incorporated an autofill function that displays the city and state(due to the fact that their are states that contain cities with the same name) below the search bar, so that they can click the correct city for their weather inquiry. 
 
-<img width="1792" alt="Screen Shot 2023-06-21 at 7 57 21 PM" src="https://github.com/byronontheboard/weather-web-app/assets/127366720/5b24fdf7-3ad1-4a6f-9892-37fce218e7bc">
+<img width="1792" alt="Screen Shot 2023-06-21 at 7 58 27 PM" src="https://github.com/byronontheboard/weather-web-app/assets/127366720/2d565a1c-e481-46f7-9eb8-952044c04daf">
 
 ----
 
@@ -35,7 +35,7 @@ Upon entering the webpage, the user will be met with a search bar. Here the user
 After entering the name of a city and clicking the "Search," button, the application will then display the current(above) & 5-Day(below) forecast for that city. 
 The user will then see the name of the city, day/date, weather, temperature, wind speed, and humidity.
 
-<img width="1792" alt="Screen Shot 2023-06-21 at 7 58 52 PM" src="https://github.com/byronontheboard/weather-web-app/assets/127366720/c18f78e0-240b-40fa-8930-7988ac2bae31">
+<img width="1792" alt="Screen Shot 2023-06-21 at 7 58 52 PM" src="https://github.com/byronontheboard/weather-web-app/assets/127366720/21507af4-0584-4b28-a671-5a078ee1d63d">
 
 ----
 
@@ -44,10 +44,10 @@ On top of the web application having searching capabilities, I wanted to allow t
 
 Additionally, this feature can be accessed from the homepage on refresh as well, or if the user reopens the application for any reason.
 
-<img width="1792" alt="Screen Shot 2023-06-21 at 7 59 12 PM" src="https://github.com/byronontheboard/weather-web-app/assets/127366720/5976b804-10b0-460e-8eac-3a4808a237e2">
+<img width="1792" alt="Screen Shot 2023-06-21 at 7 59 12 PM" src="https://github.com/byronontheboard/weather-web-app/assets/127366720/825ff0df-ddb6-443a-8eef-e9dfcfcc3969">
 
 
-<img width="1792" alt="Screen Shot 2023-06-21 at 7 59 26 PM" src="https://github.com/byronontheboard/weather-web-app/assets/127366720/2d6cd263-2663-46a7-bd40-5b8b6be7d6cd">
+<img width="1792" alt="Screen Shot 2023-06-21 at 7 59 26 PM" src="https://github.com/byronontheboard/weather-web-app/assets/127366720/2fc9500c-ad84-4280-a35e-746e6cb5d33b">
 
 ## Deployed Application 
 https://byronontheboard.github.io/weather-web-app/
