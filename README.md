@@ -27,7 +27,7 @@ As a traveler, I want to see the weather outlook for multiple cities, so that I 
 ## Search for a City
 Upon entering the webpage, the user will be met with a search bar. Here the user can enter the name of a city in the U.S. to be informed about the city's current forecast, as well as its 5-day forecast. In order to help the user find the city that they are looking for, I incorporated an autofill function that displays the city and state(due to the fact that their are states that contain cities with the same name) below the search bar, so that they can click the correct city for their weather inquiry. 
 
-<img width="1792" alt="Screen Shot 2023-06-21 at 7 58 27 PM" src="https://github.com/byronontheboard/weather-web-app/assets/127366720/37c4e09d-51dd-45f1-b474-b613305d0042">
+<img width="1792" alt="Screen Shot 2023-06-21 at 7 57 21 PM" src="https://github.com/byronontheboard/weather-web-app/assets/127366720/5b24fdf7-3ad1-4a6f-9892-37fce218e7bc">
 
 ----
 
@@ -48,3 +48,6 @@ Additionally, this feature can be accessed from the homepage on refresh as well,
 
 
 <img width="1792" alt="Screen Shot 2023-06-21 at 7 59 26 PM" src="https://github.com/byronontheboard/weather-web-app/assets/127366720/2d6cd263-2663-46a7-bd40-5b8b6be7d6cd">
+
+## Deployed Application 
+https://byronontheboard.github.io/weather-web-app/
